@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreatFrameForge (GFF)</title>
     <link rel="icon" type="image/png" href="./assets/ggadgets-logo-DHXrvmgU.png">
-  <script type="module" crossorigin src="./assets/index-pY_RMoIQ.js"></script>
+  <script type="module" crossorigin src="./assets/index-Hf_onh7U.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-DEbTtnnU.css">
 <link rel="manifest" href="./manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js"></script></head>
 <body class="min-h-screen p-4 md:p-6 bg-[#0b0d10]">
@@ -131,7 +131,7 @@
                 </div>
             </div>
 
-            <!-- Controls -->
+            <!-- Controls Area -->
             <div class="w-full xl:w-[600px] shrink-0 space-y-4 bg-gray-900 p-5 rounded-xl border border-gray-800 h-auto xl:h-[90vh] overflow-y-visible xl:overflow-y-scroll sidebar-scroll order-2 xl:order-1">
                 
                 <!-- 1. Image Frame -->
@@ -154,14 +154,14 @@
                                     <button id="clearBaseBtn" class="w-[3.5rem] h-full flex justify-center items-center text-gray-500 hover:text-red-400 transition-all" title="Clear Base Image">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                                     </button>
-                                    <input type="text" id="bgColor" value="#111827" style="background-color: #111827" class="state-val color-picker" title="Choose BG Colour">
+                                    <input type="text" id="bgColor" value="#111827" style="background-color: #111827" class="state-val color-picker" title="Choose BG Colour" inputmode="none" readonly>
                                 </div>
                                 <div class="flex flex-col md:flex-row md:items-center gap-3 pt-1">
                                     <label class="w-full md:w-[85px] text-[10px] text-gray-400 uppercase tracking-widest font-black shrink-0">Border</label>
                                     <div class="flex items-center gap-2 flex-grow">
                                         <input type="range" class="state-val sync-slider slider-bar slider-border" data-link="baseBorderW" min="0" max="40" value="0">
                                         <input type="number" class="state-val sync-number entry-base number-entry" data-link="baseBorderW" value="0">
-                                        <input type="text" id="baseBorderColor" value="#ffffff" style="background-color: #ffffff" class="state-val color-picker">
+                                        <input type="text" id="baseBorderColor" value="#ffffff" style="background-color: #ffffff" class="state-val color-picker" inputmode="none" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
                                     <div class="flex items-center gap-2 flex-grow">
                                         <input type="range" class="state-val sync-slider slider-bar slider-border" data-link="insetBorderW" min="0" max="40" value="8">
                                         <input type="number" class="state-val sync-number entry-base number-entry" data-link="insetBorderW" value="8">
-                                        <input type="text" id="insetBorderColor" value="#ffffff" style="background-color: #ffffff" class="state-val color-picker">
+                                        <input type="text" id="insetBorderColor" value="#ffffff" style="background-color: #ffffff" class="state-val color-picker" inputmode="none" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -278,11 +278,11 @@
                                         <div class="flex items-center gap-2">
                                             <input type="range" class="state-val sync-slider slider-bar slider-opacity" data-link="overlayOpacity" min="0" max="100" value="0">
                                             <input type="number" class="state-val sync-number entry-base number-entry shrink-0" data-link="overlayOpacity" value="0">
-                                            <input type="text" id="overlayColor" value="#000000" style="background-color: #000000" class="state-val color-picker hidden md:block">
+                                            <input type="text" id="overlayColor" value="#000000" style="background-color: #000000" class="state-val color-picker hidden md:block" inputmode="none" readonly>
                                         </div>
                                         <div class="flex md:hidden items-center justify-end gap-2">
                                             <span class="text-[9px] text-gray-500 font-bold uppercase">Color:</span>
-                                            <input type="text" id="overlayColorMobile" value="#000000" style="background-color: #000000" class="state-val color-picker">
+                                            <input type="text" id="overlayColorMobile" value="#000000" style="background-color: #000000" class="state-val color-picker" inputmode="none" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -309,7 +309,7 @@
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" /></svg>
                                                 </div>
                                             </div>
-                                            <input type="text" id="gradColor" value="#000000" style="background-color: #000000" class="state-val color-picker shrink-0">
+                                            <input type="text" id="gradColor" value="#000000" style="background-color: #000000" class="state-val color-picker shrink-0" inputmode="none" readonly>
                                         </div>
                                     </div>
                                     <details class="group">
@@ -354,7 +354,7 @@
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" /></svg>
                                                 </div>
                                             </div>
-                                            <input type="text" id="grad2Color" value="#000000" style="background-color: #000000" class="state-val color-picker shrink-0">
+                                            <input type="text" id="grad2Color" value="#000000" style="background-color: #000000" class="state-val color-picker shrink-0" inputmode="none" readonly>
                                         </div>
                                     </div>
                                     <details class="group">
@@ -378,34 +378,34 @@
                                 </div>
                             </div>
                         </details>
-                    </div>
-                </details>
 
-                <!-- 2. Text Forge -->
-                <details class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 relative" open>
-                    <button id="toggleTextForgeVisibility" class="absolute right-12 top-4 p-1 hover:text-white transition-colors z-20" title="Toggle Visibility">
-                        <svg id="textForgeEyeIcon" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                    </button>
-                    <summary class="p-4 font-bold text-white cursor-pointer hover:bg-gray-700/50 flex justify-between items-center rounded-lg text-sm select-none">
-                        <span>2. Text Forge</span>
-                        <div class="flex items-center gap-2">
-                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                        </div>
-                    </summary>
-                    <div class="p-3 pt-0 border-t border-gray-700 mt-2">
-                        <div class="bg-gray-900/50 p-3 rounded-lg border border-gray-700 mt-3 space-y-2">
-                            <div class="grid grid-cols-2 gap-4">
-                                <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Glb. X</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="globalTextX" min="-1000" max="1000" value="0"><input type="number" class="state-val sync-number entry-base number-entry" data-link="globalTextX" value="0"></div></div>
-                                <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Glb. Y</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="globalTextY" min="-1000" max="1000" value="0"><input type="number" class="state-val sync-number entry-base number-entry" data-link="globalTextY" value="0"></div></div>
+                        <!-- 2. Text Forge -->
+                        <details class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 relative" open>
+                            <button id="toggleTextForgeVisibility" class="absolute right-12 top-4 p-1 hover:text-white transition-colors z-20" title="Toggle Visibility">
+                                <svg id="textForgeEyeIcon" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </button>
+                            <summary class="p-4 font-bold text-white cursor-pointer hover:bg-gray-700/50 flex justify-between items-center rounded-lg text-sm select-none">
+                                <span>2. Text Forge</span>
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                </div>
+                            </summary>
+                            <div class="p-3 pt-0 border-t border-gray-700 mt-2">
+                                <div class="bg-gray-900/50 p-3 rounded-lg border border-gray-700 mt-3 space-y-2">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Glb. X</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="globalTextX" min="-1000" max="1000" value="0"><input type="number" class="state-val sync-number entry-base number-entry" data-link="globalTextX" value="0"></div></div>
+                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Glb. Y</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="globalTextY" min="-1000" max="1000" value="0"><input type="number" class="state-val sync-number entry-base number-entry" data-link="globalTextY" value="0"></div></div>
+                                    </div>
+                                    <div class="pt-2 border-t border-gray-800"><div class="flex items-center gap-3"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Scale</label><input type="range" class="state-val sync-slider slider-bar slider-size" data-link="globalTextScale" min="10" max="300" value="100"><input type="number" class="state-val sync-number entry-base number-entry" data-link="globalTextScale" value="100"></div></div>
+                                </div>
+                                <div id="textLayersContainer" class="space-y-2 mt-3"></div>
                             </div>
-                            <div class="pt-2 border-t border-gray-800"><div class="flex items-center gap-3"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Scale</label><input type="range" class="state-val sync-slider slider-bar slider-size" data-link="globalTextScale" min="10" max="300" value="100"><input type="number" class="state-val sync-number entry-base number-entry" data-link="globalTextScale" value="100"></div></div>
-                        </div>
-                        <div id="textLayersContainer" class="space-y-2 mt-3"></div>
+                        </details>
                     </div>
-                </details>
+                </div>
             </div>
         </div>
     </div>
