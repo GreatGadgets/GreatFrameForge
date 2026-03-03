@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreatFrameForge (GFF)</title>
     <link rel="icon" type="image/png" href="./assets/ggadgets-logo-DHXrvmgU.png">
-  <script type="module" crossorigin src="./assets/index-DI80WkKZ.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DzE7o_0L.css">
+  <script type="module" crossorigin src="./assets/index-CcJaZcrU.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index--qGapjLZ.css">
 <link rel="manifest" href="./manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js"></script></head>
 <body class="min-h-screen p-4 md:p-6 bg-[#0b0d10]">
 
@@ -22,70 +22,21 @@
                 </div>
             </div>
             <div class="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
-                <!-- Preset Management Group -->
-                <div class="relative border border-gray-700/50 rounded-xl p-1.5 flex items-center gap-2 bg-gray-900/20 group/presets w-full md:w-auto md:min-w-[320px]">
-                    <div class="absolute -top-2 left-3 px-1.5 bg-[#0b0d10] text-[9px] font-black text-gray-500 uppercase tracking-[0.2em] group-hover/presets:text-emerald-500 transition-colors">Presets</div>
-                    
-                    <!-- Load Preset -->
-                    <div class="relative group flex-1 md:flex-none md:w-[140px]">
-                        <div class="inline-flex h-9 cursor-pointer w-full">
-                            <button id="currentPresetName" class="flex-1 bg-gray-800 group-hover:bg-gray-700 border border-gray-700 text-white px-3 py-1 rounded-l-lg text-[11px] font-bold transition-colors border-r-0 truncate">Load</button>
-                            <button class="bg-gray-800 group-hover:bg-gray-700 border border-gray-700 text-white px-2 py-1 rounded-r-lg text-sm transition-colors h-full flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-gray-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                            </button>
-                        </div>
-                        <div class="absolute hidden group-hover:block top-full left-0 min-w-[240px] pt-0 z-[100]">
-                            <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 mt-0 overflow-hidden">
-                                <div class="px-4 py-1 text-[10px] font-black text-gray-500 uppercase tracking-widest border-b border-gray-800 mb-1">Load Preset</div>
-                                <div id="presetDropdownList" class="max-h-[300px] overflow-y-auto overflow-x-hidden sidebar-scroll p-1"></div>
-                                <div class="border-t border-gray-800 mt-2 pt-2 px-2 flex gap-2">
-                                    <button id="importPresetBtn" class="flex-1 bg-gray-800 hover:bg-gray-700 text-[10px] font-bold py-1 rounded border border-gray-700 uppercase tracking-tighter" title="Import from JSON">Import</button>
-                                    <button id="exportPresetBtn" class="flex-1 bg-gray-800 hover:bg-gray-700 text-[10px] font-bold py-1 rounded border border-gray-700 uppercase tracking-tighter" title="Export to JSON">Export</button>
-                                    <input type="file" id="presetImportFile" accept=".json" class="hidden">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Save Button -->
-                    <div class="relative group flex-1 md:flex-none md:w-[100px]">
-                        <div class="inline-flex h-9 w-full">
-                            <button id="savePresetBtn" class="flex-1 bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 hover:text-emerald-200 px-3 py-1 rounded-l-lg text-[11px] font-bold transition-colors border-r-0 uppercase">Save</button>
-                            <button class="bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 px-2 py-1 rounded-r-lg transition-colors h-full flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                            </button>
-                        </div>
-                        <div class="absolute hidden group-hover:block top-full right-0 min-w-[240px] pt-0 z-[100]">
-                            <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 mt-0 overflow-hidden">
-                                <div class="px-4 py-1 text-[10px] font-black text-gray-500 uppercase tracking-widest border-b border-gray-800 mb-1">Overwrite Existing</div>
-                                <div id="saveDropdownList" class="max-h-[300px] overflow-y-auto overflow-x-hidden sidebar-scroll p-1"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Delete Button -->
-                    <button id="deletePresetBtn" class="bg-gray-800 hover:bg-red-900/40 border border-gray-700 hover:border-red-800 text-gray-400 hover:text-red-200 px-2.5 h-9 rounded-lg transition-colors shrink-0" title="Delete Selected Preset">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                        </svg>
-                    </button>
-                </div>
-
                 <div class="flex items-center gap-3 w-full md:w-auto">
                     <button id="resetBtn" class="flex-1 md:flex-none bg-red-900/40 hover:bg-red-900/60 border border-red-800 text-red-200 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Reset</button>
                     
                     <!-- Export Dropdown -->
                     <div class="flex-1 md:flex-none inline-flex">
-                        <button id="downloadBtn" class="flex-1 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/50 text-blue-100 px-4 md:px-6 py-2 rounded-l-lg font-semibold transition-colors shadow-lg shadow-blue-600/20 border-r-0 whitespace-nowrap">Export 1440p</button>
+                        <button id="downloadBtn" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white px-4 md:px-6 py-2 rounded-l-lg font-bold transition-colors shadow-lg shadow-emerald-600/20 border-r-0 whitespace-nowrap">Export 1440p</button>
                         <div class="relative group">
-                            <button class="bg-blue-600/30 hover:bg-blue-600/40 border border-blue-500/50 text-blue-100 px-2 py-2 rounded-r-lg transition-colors shadow-lg shadow-blue-600/20 h-full flex items-center">
+                            <button class="bg-emerald-600 hover:bg-emerald-500 border-l border-emerald-400/30 text-white px-2 py-2 rounded-r-lg transition-colors shadow-lg shadow-emerald-600/20 h-full flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                             </button>
                             <div class="absolute hidden group-hover:block top-full right-0 min-w-[160px] pt-0 z-[100]">
                                 <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 mt-0">
                                     <div class="px-4 py-1 text-[10px] font-black text-gray-500 uppercase tracking-widest border-b border-gray-800 mb-1">Select Resolution</div>
-                                    <div class="px-4 py-2 text-sm text-gray-300 hover:bg-blue-600/40 hover:text-white cursor-pointer transition-colors res-option" onclick="setExportRes(1080)">1080p (Standard)</div>
-                                    <div class="px-4 py-2 text-sm text-gray-300 hover:bg-blue-600/40 hover:text-white cursor-pointer transition-colors res-option" onclick="setExportRes(1440)">1440p (High-Res)</div>
+                                    <div class="px-4 py-2 text-sm text-gray-300 hover:bg-emerald-600 hover:text-white cursor-pointer transition-colors res-option" onclick="setExportRes(1080)">1080p (Standard)</div>
+                                    <div class="px-4 py-2 text-sm text-gray-300 hover:bg-emerald-600 hover:text-white cursor-pointer transition-colors res-option" onclick="setExportRes(1440)">1440p (High-Res)</div>
                                 </div>
                             </div>
                         </div>
@@ -96,16 +47,16 @@
             </div>
         </header>
 
-        <div class="block xl:flex xl:flex-row xl:gap-8 items-start relative">
+        <div class="relative xl:flex xl:flex-row xl:gap-8 items-start">
             <!-- Mobile Sticky Container -->
-            <div class="contents xl:flex xl:flex-col xl:items-center xl:justify-start xl:sticky xl:top-6 xl:z-[50] xl:order-2">
-                <div class="sticky top-0 z-[60] bg-[#0b0d10] py-3 shadow-xl xl:relative xl:top-auto xl:z-auto xl:py-0 xl:shadow-none w-full flex justify-center">
+            <div class="w-full sticky top-0 z-[50] bg-[#0b0d10] shadow-2xl border-b border-white/5 xl:border-b-0 xl:shadow-none xl:bg-transparent xl:w-auto xl:flex-grow xl:flex xl:flex-col xl:items-center xl:justify-start xl:sticky xl:top-6 xl:order-2">
+                <div class="py-3 xl:py-0 w-full flex justify-center">
                     <div id="canvasFrame" class="canvas-container shadow-2xl ring-1 ring-white/10 w-full shrink-0 flex items-center justify-center overflow-hidden bg-gray-900/50">
                         <canvas id="thumbnailCanvas" width="1920" height="1080" class="w-full h-auto block"></canvas>
                     </div>
                 </div>
                 
-                <div class="w-full flex-grow flex flex-col overflow-hidden bg-[#0b0d10] relative z-[40]">
+                <div class="w-full flex-grow flex flex-col overflow-hidden bg-[#0b0d10] xl:bg-transparent relative z-[40]">
                     <!-- Controls Rows -->
                     <div class="flex flex-col gap-3 mt-4 md:mt-6 w-full px-2 pb-2">
                         <!-- Row 1: Scale Buttons -->
@@ -136,6 +87,47 @@
             <!-- Controls Area -->
             <div class="w-full xl:w-[600px] mt-8 xl:mt-0 shrink-0 space-y-4 bg-gray-900 p-5 rounded-xl border border-gray-800 h-auto xl:h-[90vh] overflow-y-visible xl:overflow-y-scroll sidebar-scroll order-2 xl:order-1">
                 
+                <!-- Preset Management Row -->
+                <div class="relative border border-gray-700/50 rounded-xl p-2.5 flex items-center gap-3 bg-gray-950/40 group/presets shadow-inner">
+                    <div class="absolute -top-2 left-3 px-1.5 bg-gray-900 text-[9px] font-black text-amber-500/80 uppercase tracking-[0.2em]">Presets</div>
+                    
+                    <!-- Load Preset -->
+                    <div class="relative group flex-1">
+                        <div class="inline-flex h-10 cursor-pointer w-full">
+                            <button id="currentPresetName" class="flex-1 bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-3 py-1 rounded-l-lg text-[11px] font-bold transition-colors border-r-0 truncate uppercase tracking-wider">Load Preset</button>
+                            <button class="bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-2.5 py-1 rounded-r-lg text-sm transition-colors h-full flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                            </button>
+                        </div>
+                        <div class="absolute hidden group-hover:block top-full left-0 w-full pt-1 z-[110]">
+                            <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 overflow-hidden">
+                                <div id="presetDropdownList" class="max-h-[300px] overflow-y-auto overflow-x-hidden sidebar-scroll p-1"></div>
+                                <div class="border-t border-gray-800 mt-2 pt-2 px-2 flex gap-2">
+                                    <button id="importPresetBtn" class="flex-1 bg-gray-800 hover:bg-gray-700 text-[10px] font-bold py-2 rounded border border-gray-700 uppercase tracking-tighter">Import</button>
+                                    <button id="exportPresetBtn" class="flex-1 bg-gray-800 hover:bg-gray-700 text-[10px] font-bold py-2 rounded border border-gray-700 uppercase tracking-tighter">Export</button>
+                                    <input type="file" id="presetImportFile" accept=".json" class="hidden">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Save Button -->
+                    <div class="relative group flex-1">
+                        <div class="inline-flex h-10 w-full">
+                            <button id="savePresetBtn" class="flex-1 bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-3 py-1 rounded-l-lg text-[11px] font-bold transition-colors border-r-0 uppercase tracking-wider">Save</button>
+                            <button class="bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-2.5 py-1 rounded-r-lg transition-colors h-full flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                            </button>
+                        </div>
+                        <div class="absolute hidden group-hover:block top-full right-0 w-full pt-1 z-[110]">
+                            <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 overflow-hidden">
+                                <div class="px-4 py-1 text-[10px] font-black text-gray-500 uppercase tracking-widest border-b border-gray-800 mb-1">Overwrite Existing</div>
+                                <div id="saveDropdownList" class="max-h-[300px] overflow-y-auto overflow-x-hidden sidebar-scroll p-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 1. Image Frame -->
                 <details class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600" open>
                     <summary class="p-4 font-bold text-white cursor-pointer hover:bg-gray-700/50 flex justify-between items-center rounded-lg select-none">
@@ -147,10 +139,10 @@
                         <!-- Base Image Block -->
                         <div class="bg-gray-900 rounded-lg border border-gray-700 overflow-hidden">
                             <div class="p-4 bg-gray-950/20 border-b border-gray-800/50 space-y-3">
-                                <div class="flex items-center gap-2 w-full h-[2.5rem]">
-                                    <label id="baseUploadLabel" for="baseImageUpload" class="flex-grow h-full flex items-center justify-center gap-3 px-4 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/50 rounded-xl cursor-pointer transition-all group shadow-lg">
-                                        <svg class="w-4 h-4 text-blue-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
-                                        <span class="text-[10px] font-black text-blue-100 uppercase tracking-widest pointer-events-none">Upload Base Image</span>
+                                <div class="flex items-center gap-2 w-full h-[3rem]">
+                                    <label id="baseUploadLabel" for="baseImageUpload" class="flex-grow h-full flex items-center justify-center gap-3 px-6 bg-blue-600 hover:bg-blue-500 border border-blue-400/30 rounded-xl cursor-pointer transition-all group shadow-[0_0_20px_rgba(37,99,235,0.2)]">
+                                        <svg class="w-5 h-5 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
+                                        <span class="text-[11px] font-black text-white uppercase tracking-[0.1em] pointer-events-none">Upload Base Image</span>
                                         <input type="file" id="baseImageUpload" accept="image/*" class="hidden">
                                     </label>
                                     <button id="clearBaseBtn" class="w-[3.5rem] h-full flex justify-center items-center text-gray-500 hover:text-red-400 transition-all" title="Clear Base Image">
@@ -202,10 +194,10 @@
                         <!-- Inset Image -->
                         <div class="bg-gray-900 rounded-lg border border-gray-700 overflow-hidden">
                             <div class="p-4 bg-gray-950/20 border-b border-gray-800/50 space-y-3">
-                                <div class="flex items-center gap-2 w-full h-[2.5rem]">
-                                    <label id="insetUploadLabel" for="insetImageUpload" class="flex-grow h-full flex items-center justify-center gap-3 px-4 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/50 rounded-xl cursor-pointer transition-all group shadow-lg">
-                                        <svg class="w-4 h-4 text-blue-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                                        <span class="text-[10px] font-black text-blue-100 uppercase tracking-widest pointer-events-none">Upload Inset Image</span>
+                                <div class="flex items-center gap-2 w-full h-[3rem]">
+                                    <label id="insetUploadLabel" for="insetImageUpload" class="flex-grow h-full flex items-center justify-center gap-3 px-6 bg-blue-600 hover:bg-blue-500 border border-blue-400/30 rounded-xl cursor-pointer transition-all group shadow-[0_0_20px_rgba(37,99,235,0.2)]">
+                                        <svg class="w-5 h-5 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                        <span class="text-[11px] font-black text-white uppercase tracking-[0.1em] pointer-events-none">Upload Inset Image</span>
                                         <input type="file" id="insetImageUpload" accept="image/*" class="hidden">
                                     </label>
                                     <button id="clearInsetBtn" class="w-[3.5rem] h-full flex justify-center items-center text-gray-500 hover:text-red-400 transition-all" title="Clear Inset Image">
