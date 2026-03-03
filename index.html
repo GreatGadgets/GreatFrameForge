@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreatFrameForge (GFF)</title>
     <link rel="icon" type="image/png" href="./assets/ggadgets-logo-DHXrvmgU.png">
-  <script type="module" crossorigin src="./assets/index-DiuN7eiz.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-C3DFCCry.css">
+  <script type="module" crossorigin src="./assets/index-LRd5crY5.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BA7dKgwl.css">
 <link rel="manifest" href="./manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js"></script></head>
-<body class="min-h-screen p-4 md:p-6">
+<body class="min-h-screen p-4 md:p-6 bg-[#0b0d10]">
 
-    <div class="max-w-[1920px] mx-auto">
+    <div class="max-w-[1920px] mx-auto pb-32">
         <header class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div class="flex items-center gap-4">
                 <img src="./assets/ggadgets-logo-DHXrvmgU.png" alt="GFF Logo" class="w-12 h-12 md:w-16 md:h-16 drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">
@@ -21,13 +21,13 @@
                     <p class="text-lg md:text-xl text-emerald-400 italic font-black tracking-[0.2em] mt-0.5 opacity-90">Frame. Forge. Finish.</p>
                 </div>
             </div>
-            <div class="flex flex-col gap-3 w-full md:w-auto">
+            <div class="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
                 <!-- Preset Management Group -->
-                <div class="relative border border-gray-700/50 rounded-xl p-1.5 flex items-center gap-2 bg-gray-900/20 group/presets w-full">
+                <div class="relative border border-gray-700/50 rounded-xl p-1.5 flex items-center gap-2 bg-gray-900/20 group/presets w-full md:w-auto md:min-w-[320px]">
                     <div class="absolute -top-2 left-3 px-1.5 bg-[#0b0d10] text-[9px] font-black text-gray-500 uppercase tracking-[0.2em] group-hover/presets:text-emerald-500 transition-colors">Presets</div>
                     
                     <!-- Load Preset -->
-                    <div class="relative group flex-1">
+                    <div class="relative group flex-1 md:flex-none md:w-[140px]">
                         <div class="inline-flex h-9 cursor-pointer w-full">
                             <button id="currentPresetName" class="flex-1 bg-gray-800 group-hover:bg-gray-700 border border-gray-700 text-white px-3 py-1 rounded-l-lg text-[11px] font-bold transition-colors border-r-0 truncate">Load</button>
                             <button class="bg-gray-800 group-hover:bg-gray-700 border border-gray-700 text-white px-2 py-1 rounded-r-lg text-sm transition-colors h-full flex items-center">
@@ -48,7 +48,7 @@
                     </div>
                     
                     <!-- Save Button -->
-                    <div class="relative group flex-1">
+                    <div class="relative group flex-1 md:flex-none md:w-[100px]">
                         <div class="inline-flex h-9 w-full">
                             <button id="savePresetBtn" class="flex-1 bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 hover:text-emerald-200 px-3 py-1 rounded-l-lg text-[11px] font-bold transition-colors border-r-0 uppercase">Save</button>
                             <button class="bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 px-2 py-1 rounded-r-lg transition-colors h-full flex items-center">
@@ -71,11 +71,11 @@
                     </button>
                 </div>
 
-                <div class="flex items-center gap-3 w-full">
-                    <button id="resetBtn" class="flex-1 bg-red-900/40 hover:bg-red-900/60 border border-red-800 text-red-200 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Reset Default</button>
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <button id="resetBtn" class="flex-1 md:flex-none bg-red-900/40 hover:bg-red-900/60 border border-red-800 text-red-200 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Reset</button>
                     
                     <!-- Export Dropdown -->
-                    <div class="flex-1 inline-flex">
+                    <div class="flex-1 md:flex-none inline-flex">
                         <button id="downloadBtn" class="flex-1 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/50 text-blue-100 px-4 md:px-6 py-2 rounded-l-lg font-semibold transition-colors shadow-lg shadow-blue-600/20 border-r-0 whitespace-nowrap">Export 1440p</button>
                         <div class="relative group">
                             <button class="bg-blue-600/30 hover:bg-blue-600/40 border border-blue-500/50 text-blue-100 px-2 py-2 rounded-r-lg transition-colors shadow-lg shadow-blue-600/20 h-full flex items-center">
@@ -96,8 +96,8 @@
             </div>
         </header>
 
-        <div class="flex flex-col xl:flex-row gap-8 items-start">
-            <!-- Canvas Area (Sticky at top for mobile) -->
+        <div class="flex flex-col xl:flex-row gap-8 items-start relative">
+            <!-- Mobile Sticky Container -->
             <div class="w-full flex-grow flex flex-col items-center justify-start sticky top-0 md:relative xl:sticky xl:top-6 z-[50] bg-[#0b0d10] py-2 md:py-0 order-1 xl:order-2 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)]">
                 <div id="canvasFrame" class="canvas-container shadow-2xl ring-1 ring-white/10 w-full shrink-0 flex items-center justify-center overflow-hidden bg-gray-900/50">
                     <canvas id="thumbnailCanvas" width="1920" height="1080" class="w-full h-auto block"></canvas>
