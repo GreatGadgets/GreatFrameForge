@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreatFrameForge (GFF)</title>
     <link rel="icon" type="image/png" href="./assets/ggadgets-logo-DHXrvmgU.png">
-  <script type="module" crossorigin src="./assets/index-B6gQEj1x.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-D-cY7_nN.css">
+  <script type="module" crossorigin src="./assets/index-DiuN7eiz.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C3DFCCry.css">
 <link rel="manifest" href="./manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js"></script></head>
 <body class="min-h-screen p-4 md:p-6">
 
@@ -98,14 +98,14 @@
 
         <div class="flex flex-col xl:flex-row gap-8 items-start">
             <!-- Canvas Area (Sticky at top for mobile) -->
-            <div class="w-full flex-grow flex flex-col items-center justify-start sticky top-0 md:relative xl:sticky xl:top-6 z-[50] bg-[#0b0d10] py-2 md:py-0 order-1 xl:order-2">
-                <div id="canvasFrame" class="canvas-container shadow-2xl ring-1 ring-white/10 w-full shrink-0 flex items-start justify-center overflow-hidden">
-                    <canvas id="thumbnailCanvas" width="1920" height="1080" class="w-full h-auto block origin-top"></canvas>
+            <div class="w-full flex-grow flex flex-col items-center justify-start sticky top-0 md:relative xl:sticky xl:top-6 z-[50] bg-[#0b0d10] py-2 md:py-0 order-1 xl:order-2 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)]">
+                <div id="canvasFrame" class="canvas-container shadow-2xl ring-1 ring-white/10 w-full shrink-0 flex items-center justify-center overflow-hidden bg-gray-900/50">
+                    <canvas id="thumbnailCanvas" width="1920" height="1080" class="w-full h-auto block"></canvas>
                 </div>
                 
                 <div class="w-full flex-grow flex flex-col overflow-hidden bg-[#0b0d10]">
                     <!-- Controls Rows -->
-                    <div class="flex flex-col gap-3 mt-4 md:mt-6 w-full px-2">
+                    <div class="flex flex-col gap-3 mt-4 md:mt-6 w-full px-2 pb-2">
                         <!-- Row 1: Scale Buttons -->
                         <div class="flex items-center justify-center gap-1.5 w-full">
                             <button onclick="setPreviewScale('full')" class="preview-scale-btn active flex-1 h-[2.3rem] bg-gray-800 border border-blue-500 text-white rounded-lg text-[10px] font-black uppercase tracking-widest transition-all">Full</button>
@@ -132,7 +132,7 @@
             </div>
 
             <!-- Controls -->
-            <div class="w-full xl:w-[600px] shrink-0 space-y-4 bg-gray-900 p-5 rounded-xl border border-gray-800 h-auto xl:h-[82vh] overflow-y-visible xl:overflow-y-scroll sidebar-scroll order-2 xl:order-1">
+            <div class="w-full xl:w-[600px] shrink-0 space-y-4 bg-gray-900 p-5 rounded-xl border border-gray-800 h-auto xl:h-[90vh] overflow-y-visible xl:overflow-y-scroll sidebar-scroll order-2 xl:order-1">
                 
                 <!-- 1. Image Frame -->
                 <details class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600" open>
@@ -239,8 +239,8 @@
                                         <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Pos Y</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="insetPosY" min="0" max="1080" value="780"><input type="number" class="state-val sync-number entry-base number-entry h-[2.3rem]" data-link="insetPosY" value="780"></div></div>
                                     </div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Pan X</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="insetPanX" min="-1000" max="1000" value="0"><input type="number" class="state-val sync-number entry-base number-entry h-[2.3rem]" data-link="insetPanX" value="0"></div></div>
-                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Pan Y</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="insetPanY" min="-1000" max="1000" value="0"><input type="number" class="state-val sync-number entry-base number-entry h-[2.3rem]" data-link="insetPanY" value="0"></div></div>
+                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Pan X</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="insetPanX" min="-1000" max="1000" value="0"><input type="number" class="state-val sync-number entry-base number-entry" data-link="insetPanX" value="0"></div></div>
+                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Pan Y</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="insetPanY" min="-1000" max="1000" value="0"><input type="number" class="state-val sync-number entry-base number-entry" data-link="insetPanY" value="0"></div></div>
                                     </div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Width</label><input type="range" class="state-val sync-slider slider-bar slider-size" data-link="insetW" min="100" max="1000" value="400"><input type="number" class="state-val sync-number entry-base number-entry h-[2.3rem]" data-link="insetW" value="400"></div></div>
@@ -375,7 +375,8 @@
                                             </div>
                                         </div>
                                     </details>
-                                </div>                            </div>
+                                </div>
+                            </div>
                         </details>
                     </div>
                 </details>
@@ -397,52 +398,14 @@
                     <div class="p-3 pt-0 border-t border-gray-700 mt-2">
                         <div class="bg-gray-900/50 p-3 rounded-lg border border-gray-700 mt-3 space-y-2">
                             <div class="grid grid-cols-2 gap-4">
-                                <div><label class="text-[10px] text-gray-400 uppercase font-black block mb-1">Global Pos</label><div class="flex items-center gap-2"><span class="text-xs text-gray-500 w-4 cursor-pointer reset-label" title="Reset" data-default="0">X</span><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="globalTextX" min="-1000" max="1000" value="0"><input type="number" class="state-val sync-number entry-base number-entry" data-link="globalTextX" value="0"></div></div>
-                                <div><label class="text-[10px] invisible block mb-1">Y</label><div class="flex items-center gap-2"><span class="text-xs text-gray-500 w-4 cursor-pointer reset-label" title="Reset" data-default="0">Y</span><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="globalTextY" min="-1000" max="1000" value="0"><input type="number" class="state-val sync-number entry-base number-entry" data-link="globalTextY" value="0"></div></div>
+                                <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Glb. X</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="globalTextX" min="-1000" max="1000" value="0"><input type="number" class="state-val sync-number entry-base number-entry" data-link="globalTextX" value="0"></div></div>
+                                <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Glb. Y</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="globalTextY" min="-1000" max="1000" value="0"><input type="number" class="state-val sync-number entry-base number-entry" data-link="globalTextY" value="0"></div></div>
                             </div>
-                            <div class="pt-2 border-t border-gray-800"><label class="text-[10px] text-gray-400 uppercase font-black block mb-1">Global Scale (%)</label><div class="flex items-center gap-3"><input type="range" class="state-val sync-slider slider-bar slider-size" data-link="globalTextScale" min="10" max="300" value="100"><input type="number" class="state-val sync-number entry-base number-entry" data-link="globalTextScale" value="100"></div></div>
+                            <div class="pt-2 border-t border-gray-800"><div class="flex items-center gap-3"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Scale</label><input type="range" class="state-val sync-slider slider-bar slider-size" data-link="globalTextScale" min="10" max="300" value="100"><input type="number" class="state-val sync-number entry-base number-entry" data-link="globalTextScale" value="100"></div></div>
                         </div>
                         <div id="textLayersContainer" class="space-y-2 mt-3"></div>
                     </div>
                 </details>
-            </div>
-
-            <!-- Canvas Area -->
-            <div class="w-full flex-grow flex flex-col items-center justify-start xl:sticky xl:top-6 h-[82vh]">
-                <div id="canvasFrame" class="canvas-container shadow-2xl ring-1 ring-white/10 w-full shrink-0 origin-top">
-                    <canvas id="thumbnailCanvas" width="1920" height="1080" class="w-full h-auto block"></canvas>
-                </div>
-                
-                <div class="w-full flex-grow flex flex-col overflow-hidden">
-                    <!-- Controls Row -->
-                    <div class="flex justify-between items-center gap-3 mt-6 w-full px-2">
-                        <!-- Left: Guide -->
-                        <div class="w-[160px] flex justify-start">
-                            <button id="toggleColorWheelBtn" class="h-[2.3rem] px-4 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-400 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 group whitespace-nowrap">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-emerald-500/70 group-hover:text-emerald-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
-                                Colour Guide
-                            </button>
-                        </div>
-
-                        <!-- Center: Scale -->
-                        <div class="flex items-center gap-1.5 shrink-0">
-                            <button onclick="setPreviewScale('full')" class="preview-scale-btn active h-[2.3rem] px-4 py-1.5 bg-gray-800 border border-blue-500 text-white rounded-lg text-[10px] font-black uppercase tracking-widest transition-all">Full</button>
-                            <button onclick="setPreviewScale('large')" class="preview-scale-btn h-[2.3rem] px-4 py-1.5 bg-gray-800 border border-gray-700 text-gray-400 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all">L</button>
-                            <button onclick="setPreviewScale('medium')" class="preview-scale-btn h-[2.3rem] px-4 py-1.5 bg-gray-800 border border-gray-700 text-gray-400 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all">M</button>
-                            <button onclick="setPreviewScale('small')" class="preview-scale-btn h-[2.3rem] px-4 py-1.5 bg-gray-800 border border-gray-700 text-gray-400 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all">S</button>
-                        </div>
-
-                        <!-- Right: Safe Zones -->
-                        <div class="w-[160px] flex justify-end">
-                            <button id="toggleYTGuidesBtn" class="h-[2.3rem] px-4 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-400 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 group whitespace-nowrap">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-emerald-500/70 group-hover:text-emerald-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                                YouTube Safe Zones
-                            </button>
-                        </div>
-                    </div>
-
-                    <div id="colour-wheel-host" class="flex-grow flex flex-col min-h-0"></div>
-                </div>
             </div>
         </div>
     </div>
@@ -473,8 +436,8 @@
         <div class="flex items-center gap-2 px-5 py-2.5 bg-gray-900/40 hover:bg-gray-900/80 border border-gray-800/50 hover:border-orange-500/30 rounded-full backdrop-blur-md transition-all cursor-default shadow-lg">
             <span class="text-[12px] text-gray-400 italic font-medium">Crafted by</span>
             <span class="text-[12px] text-orange-500/80 group-hover/creator:text-orange-500 font-black italic tracking-wider transition-colors underline decoration-orange-500/20 underline-offset-4">Y0kenB</span>
-            </div>
-            </div>
+        </div>
+    </div>
 
 </body>
 </html>
