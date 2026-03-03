@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreatFrameForge (GFF)</title>
     <link rel="icon" type="image/png" href="./assets/ggadgets-logo-DHXrvmgU.png">
-  <script type="module" crossorigin src="./assets/index-Hf_onh7U.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DEbTtnnU.css">
+  <script type="module" crossorigin src="./assets/index-DI80WkKZ.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DzE7o_0L.css">
 <link rel="manifest" href="./manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js"></script></head>
 <body class="min-h-screen p-4 md:p-6 bg-[#0b0d10]">
 
@@ -96,14 +96,16 @@
             </div>
         </header>
 
-        <div class="flex flex-col xl:flex-row gap-8 items-start relative">
+        <div class="block xl:flex xl:flex-row xl:gap-8 items-start relative">
             <!-- Mobile Sticky Container -->
-            <div class="w-full flex-grow flex flex-col items-center justify-start sticky top-0 md:relative xl:sticky xl:top-6 z-[50] bg-[#0b0d10] py-2 md:py-0 order-1 xl:order-2 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)]">
-                <div id="canvasFrame" class="canvas-container shadow-2xl ring-1 ring-white/10 w-full shrink-0 flex items-center justify-center overflow-hidden bg-gray-900/50">
-                    <canvas id="thumbnailCanvas" width="1920" height="1080" class="w-full h-auto block"></canvas>
+            <div class="contents xl:flex xl:flex-col xl:items-center xl:justify-start xl:sticky xl:top-6 xl:z-[50] xl:order-2">
+                <div class="sticky top-0 z-[60] bg-[#0b0d10] py-3 shadow-xl xl:relative xl:top-auto xl:z-auto xl:py-0 xl:shadow-none w-full flex justify-center">
+                    <div id="canvasFrame" class="canvas-container shadow-2xl ring-1 ring-white/10 w-full shrink-0 flex items-center justify-center overflow-hidden bg-gray-900/50">
+                        <canvas id="thumbnailCanvas" width="1920" height="1080" class="w-full h-auto block"></canvas>
+                    </div>
                 </div>
                 
-                <div class="w-full flex-grow flex flex-col overflow-hidden bg-[#0b0d10]">
+                <div class="w-full flex-grow flex flex-col overflow-hidden bg-[#0b0d10] relative z-[40]">
                     <!-- Controls Rows -->
                     <div class="flex flex-col gap-3 mt-4 md:mt-6 w-full px-2 pb-2">
                         <!-- Row 1: Scale Buttons -->
@@ -132,7 +134,7 @@
             </div>
 
             <!-- Controls Area -->
-            <div class="w-full xl:w-[600px] shrink-0 space-y-4 bg-gray-900 p-5 rounded-xl border border-gray-800 h-auto xl:h-[90vh] overflow-y-visible xl:overflow-y-scroll sidebar-scroll order-2 xl:order-1">
+            <div class="w-full xl:w-[600px] mt-8 xl:mt-0 shrink-0 space-y-4 bg-gray-900 p-5 rounded-xl border border-gray-800 h-auto xl:h-[90vh] overflow-y-visible xl:overflow-y-scroll sidebar-scroll order-2 xl:order-1">
                 
                 <!-- 1. Image Frame -->
                 <details class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600" open>
