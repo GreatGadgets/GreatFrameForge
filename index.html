@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreatFrameForge (GFF)</title>
     <link rel="icon" type="image/png" href="./assets/ggadgets-logo-DHXrvmgU.png">
-  <script type="module" crossorigin src="./assets/index-BOSwIye4.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BOXPnRdR.css">
+  <script type="module" crossorigin src="./assets/index-PH5Pzk7u.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-rSreKYVv.css">
 <link rel="manifest" href="./manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js"></script></head>
 <body class="min-h-screen p-4 md:p-6 bg-[#0b0d10]">
 
@@ -224,6 +224,20 @@
                                         <button class="text-gray-500 hover:text-red-400 transition-colors transform-reset-btn" title="Reset Transforms" onclick="resetTransformSection('insetTransformContent')">
                                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
                                         </button>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div>
+                                            <div class="flex items-center gap-2">
+                                                <label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Mask</label>
+                                                <div class="flex items-center gap-2 flex-grow">
+                                                    <select id="insetMask" class="state-val entry-base px-2 h-[2rem] text-[10px] font-black uppercase flex-grow">
+                                                        <option value="rect">Square</option>
+                                                        <option value="circle">Circle</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="hidden md:block"></div>
                                     </div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Pos X</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="insetPosX" min="0" max="1920" value="1420"><input type="number" class="state-val sync-number entry-base number-entry h-[2.3rem]" data-link="insetPosX" value="1420"></div></div>
