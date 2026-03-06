@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreatFrameForge (GFF)</title>
+    <link rel="icon" type="image/png" href="./assets/ggadgets-logo-DHXrvmgU.png">
+  <script type="module" crossorigin src="./assets/index-CYkcTZQT.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BlQn5Cp7.css">
+<link rel="manifest" href="./manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js"></script></head>
+<body class="min-h-screen bg-[#0b0d10]">
+
+    <div class="max-w-[1920px] mx-auto p-4 md:p-6 flex flex-col min-h-screen">
+        <header class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shrink-0">
+            <div class="flex items-center gap-4">
+                <img src="./assets/ggadgets-logo-DHXrvmgU.png" alt="GFF Logo" class="w-12 h-12 md:w-16 md:h-16 drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-2">
+                        GreatFrameForge <span class="text-[10px] md:text-sm font-normal opacity-60 mt-1">(GFF)</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-emerald-400 italic font-black tracking-[0.2em] mt-0.5 opacity-90">Frame. Forge. Finish.</p>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <button id="resetBtn" class="flex-1 md:flex-none bg-red-900/40 hover:bg-red-900/60 border border-red-800 text-red-200 px-4 py-2 rounded-lg text-sm font-semibold transition-colors uppercase tracking-wider">Clear Canvas</button>
+                    
+                    <!-- Export Dropdown -->
+                    <div class="flex-1 md:flex-none inline-flex h-9">
+                        <button id="downloadBtn" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white px-4 md:px-6 py-1 rounded-l-lg text-sm font-bold transition-colors shadow-lg shadow-emerald-600/20 border-r-0 whitespace-nowrap">Export 1440p</button>
+                        <div class="relative group dropdown-container">
+                            <button class="bg-emerald-600 hover:bg-emerald-500 border-l border-emerald-400/30 text-white px-2 py-1 rounded-r-lg transition-colors shadow-lg shadow-emerald-600/20 h-full flex items-center dropdown-toggle">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                            </button>
+                            <div class="absolute hidden group-hover:block group-[.open]:block top-full right-0 min-w-[160px] pt-0 z-[100] dropdown-menu">
+                                <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 mt-0">
+                                    <div class="px-4 py-1 text-[10px] font-black text-gray-500 uppercase tracking-widest border-b border-gray-800 mb-1">Select Resolution</div>
+                                    <div class="px-4 py-2 text-sm text-gray-300 hover:bg-emerald-600 hover:text-white cursor-pointer transition-colors res-option" onclick="setExportRes(1080)">1080p (Standard)</div>
+                                    <div class="px-4 py-2 text-sm text-gray-300 hover:bg-emerald-600 hover:text-white cursor-pointer transition-colors res-option" onclick="setExportRes(1440)">1440p (High-Res)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="file" id="fontUploadFile" accept=".ttf,.otf,.woff,.woff2" class="hidden">
+            </div>
+        </header>
+
+        <div class="flex-grow flex flex-col xl:flex-row xl:gap-8 items-stretch min-h-0">
+            
+            <!-- Side Panel (Left on Desktop, Bottom on Mobile) -->
+            <div id="controlsArea" class="w-full xl:w-[600px] shrink-0 flex flex-col space-y-4 bg-gray-900 p-5 rounded-xl border border-gray-800 xl:overflow-y-auto sidebar-scroll order-2 xl:order-1 relative transition-all duration-300 min-h-0 xl:h-[calc(100vh-180px)]">
+                <!-- Scroll Sentinel for Sticky Border -->
+                <div id="scroll-sentinel" class="absolute top-0 left-0 w-full h-px pointer-events-none"></div>
+
+
+                <!-- Preset Management Row -->
+                <div class="relative border border-gray-700/50 rounded-xl p-2.5 flex items-center gap-3 bg-gray-950/40 group/presets shadow-inner shrink-0">
+                    <div class="absolute -top-2 left-3 px-1.5 bg-gray-900 text-[9px] font-black text-amber-500/80 uppercase tracking-[0.2em]">Presets</div>
+
+                    <!-- Load -->
+                    <div class="relative group flex-1 dropdown-container">
+                        <div class="inline-flex h-10 cursor-pointer w-full dropdown-toggle">
+                            <button id="currentPresetName" class="flex-1 bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-3 py-1 rounded-l-lg text-[11px] font-bold transition-colors border-r-0 truncate uppercase tracking-wider">Load</button>
+                            <button class="bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-2.5 py-1 rounded-r-lg text-sm transition-colors h-full flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                            </button>
+                        </div>
+                        <div class="absolute hidden group-hover:block group-[.open]:block top-full left-0 w-full pt-1 z-[110] dropdown-menu">
+                            <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 overflow-hidden">
+                                <div id="presetDropdownList" class="max-h-[300px] overflow-y-auto overflow-x-hidden sidebar-scroll p-1"></div>
+                                <div class="border-t border-gray-800 mt-2 pt-2 px-2 flex gap-2">
+                                    <button id="importPresetBtn" class="flex-1 bg-gray-800 hover:bg-gray-700 text-[10px] font-bold py-2 rounded border border-gray-700 uppercase tracking-tighter">Import</button>
+                                    <button id="exportPresetBtn" class="flex-1 bg-gray-800 hover:bg-gray-700 text-[10px] font-bold py-2 rounded border border-gray-700 uppercase tracking-tighter">Export</button>
+                                    <input type="file" id="presetImportFile" accept=".json" class="hidden">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="relative group flex-1 dropdown-container">
+                        <div class="inline-flex h-10 w-full">
+                            <button id="savePresetBtn" class="flex-1 bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-3 py-1 rounded-l-lg text-[11px] font-bold transition-colors border-r-0 uppercase tracking-wider">Save</button>
+                            <button class="bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-2.5 py-1 rounded-r-lg transition-colors h-full flex items-center dropdown-toggle">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                            </button>
+                        </div>
+                        <div class="absolute hidden group-hover:block group-[.open]:block top-full right-0 w-full pt-1 z-[110] dropdown-menu">
+                            <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 overflow-hidden">
+                                <div class="px-4 py-1 text-[10px] font-black text-gray-500 uppercase tracking-widest border-b border-gray-800 mb-1">Overwrite Existing</div>
+                                <div id="saveDropdownList" class="max-h-[300px] overflow-y-auto overflow-x-hidden sidebar-scroll p-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1. Base Image -->
+                <details id="mainBaseDetails" class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 shrink-0" open>
+                    <summary class="p-4 font-bold text-white cursor-pointer hover:bg-gray-700/50 flex justify-between items-center rounded-lg select-none">
+                        <span>1. Base Image</span>
+                        <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </summary>
+                    <div class="p-3 pt-0 border-t border-gray-700 mt-2 space-y-3">
+
+                        <!-- Base Image Block -->
+                        <div class="bg-gray-900 rounded-lg border border-gray-700 overflow-hidden layer-card">
+                            <div class="p-4 bg-gray-950/20 border-b border-gray-800/50 space-y-3">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Base Image Layer</span>
+                                </div>
+                                <div class="flex items-center gap-2 w-full h-[2.3rem]">
+                                   <button id="clearBaseBtn" class="w-8 h-full flex justify-center items-center text-gray-500 hover:text-red-400 transition-all shrink-0" title="Delete Base Layer (Complete Reset)">
+                                       <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                                   </button>
+                                   <label id="baseUploadLabel" for="baseImageUpload" class="flex-grow h-full flex items-center justify-center gap-2 px-4 bg-blue-600 hover:bg-blue-500 border border-blue-400/30 rounded-lg cursor-pointer transition-all group shadow-md overflow-hidden">
+                                       <svg class="w-4 h-4 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
+                                       <span class="text-[9px] font-black text-white uppercase tracking-wider pointer-events-none truncate">Upload Base Image</span>
+                                       <input type="file" id="baseImageUpload" accept="image/*" class="hidden">
+                                   </label>
+                                   <div id="baseClearXPlaceholder" class="w-[3.5rem] shrink-0 h-full flex justify-center items-center">
+                                       <button id="clearBaseImageX" class="text-gray-500 hover:text-amber-400 transition-all w-full flex justify-center items-center h-full border border-gray-700 bg-gray-800 rounded-lg opacity-20 pointer-events-none" title="Remove Image (Keep Layer)">
+                                           <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                       </button>
+                                   </div>
+                                   <input type="text" id="bgColor" value="transparent" style="background-color: #111827" class="state-val color-picker shrink-0" title="Choose BG Colour" inputmode="none" readonly>
+                                </div>
+                                <div id="baseBorderControls" class="flex items-center gap-3 pt-1 transition-opacity">
+                                    <div class="flex items-center gap-2 flex-grow">
+                                        <label class="text-[10px] text-gray-400 uppercase tracking-widest font-black shrink-0 w-8">Brd.</label>
+                                        <input type="range" class="state-val sync-slider slider-bar slider-border flex-grow" data-link="baseBorderW" min="0" max="40" value="0">
+                                        <input type="number" inputmode="none" class="state-val sync-number entry-base number-entry shrink-0" data-link="baseBorderW" value="0">
+                                        <input type="text" id="baseBorderColor" value="#ffffff" style="background-color: #ffffff" class="state-val color-picker shrink-0" inputmode="none" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <details class="group">
+                                <summary class="flex items-center justify-center py-1 cursor-pointer hover:bg-gray-800/50 border-t border-gray-800 select-none"><div class="w-full flex items-center px-4"><div class="flex-grow h-[1px] bg-gray-800"></div><div class="px-3 text-[10px] text-gray-500 group-hover:text-blue-400 uppercase font-black tracking-widest">Transforms</div><div class="flex-grow h-[1px] bg-gray-800"></div></div></summary>
+                                <div id="baseTransformContent" class="p-4 py-6 bg-gray-950/30 border-t border-gray-800/50 space-y-4 opacity-40 pointer-events-none transition-opacity">
+                                    <div class="flex justify-end border-b border-white/5 pb-2 mb-2">
+                                        <button class="text-gray-500 hover:text-red-400 transition-colors transform-reset-btn" title="Reset Transforms" onclick="resetTransformSection('baseTransformContent')">
+                                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Pos X</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="basePosX" min="-1000" max="1000" value="0"><input type="number" inputmode="none" class="state-val sync-number entry-base number-entry h-[2.3rem]" data-link="basePosX" value="0"></div></div>
+                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Pos Y</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="basePosY" min="-1000" max="1000" value="0"><input type="number" inputmode="none" class="state-val sync-number entry-base number-entry h-[2.3rem]" data-link="basePosY" value="0"></div></div>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Pan X</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="baseX" min="-1000" max="1000" value="0"><input type="number" inputmode="none" class="state-val sync-number entry-base number-entry" data-link="baseX" value="0"></div></div>
+                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Pan Y</label><input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="baseY" min="-1000" max="1000" value="0"><input type="number" inputmode="none" class="state-val sync-number entry-base number-entry" data-link="baseY" value="0"></div></div>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Zoom</label><input type="range" class="state-val sync-slider slider-bar slider-size" data-link="baseScale" min="0.5" max="3" step="0.01" value="1"><input type="number" inputmode="none" class="state-val sync-number entry-base number-entry" data-link="baseScale" value="1"></div></div>
+                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Rotate</label><input type="range" class="state-val sync-slider slider-bar slider-rotate" data-link="baseRot" min="-180" max="180" value="0"><input type="number" inputmode="none" class="state-val sync-number entry-base number-entry" data-link="baseRot" value="0"></div></div>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1 border-t border-gray-800/50">
+                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Cont.</label><input type="range" class="state-val sync-slider slider-bar accent-gray-400" data-link="baseContrast" min="0" max="200" value="100"><input type="number" inputmode="none" class="state-val sync-number entry-base number-entry" data-link="baseContrast" value="100"></div></div>
+                                        <div><div class="flex items-center gap-2"><label class="text-[10px] text-gray-400 uppercase font-black w-10 shrink-0">Bright.</label><input type="range" class="state-val sync-slider slider-bar accent-gray-400" data-link="baseBrightness" min="0" max="200" value="100"><input type="number" inputmode="none" class="state-val sync-number entry-base number-entry" data-link="baseBrightness" value="100"></div></div>
+                                    </div>
+                                    <div class="flex gap-3 pt-1 border-t border-gray-800/50">
+                                        <label class="cursor-pointer flex-1"><input type="checkbox" id="baseFlipH" class="state-val hidden peer"><div class="w-full text-center py-2.5 rounded-xl border border-gray-700 bg-gray-800 text-[10px] font-black text-gray-500 peer-checked:bg-emerald-600 peer-checked:text-white transition-all uppercase tracking-widest shadow-lg">Flip Horizontal</div></label>
+                                        <label class="cursor-pointer flex-1"><input type="checkbox" id="baseFlipV" class="state-val hidden peer"><div class="w-full text-center py-2.5 rounded-xl border border-gray-700 bg-gray-800 text-[10px] font-black text-gray-500 peer-checked:bg-emerald-600 peer-checked:text-white transition-all uppercase tracking-widest shadow-lg">Flip Vertical</div></label>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- 2. Inset Layers -->
+                <details id="mainInsetDetails" class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 shrink-0" open>
+                    <summary class="p-4 font-bold text-white cursor-pointer hover:bg-gray-700/50 flex justify-between items-center rounded-lg select-none">
+                        <span>2. Inset Layers</span>
+                        <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </summary>
+                    <div class="px-3 pt-0 pb-0 border-t border-gray-700 mt-2 space-y-3">
+                        <div id="insetsContainer" class="space-y-3 mt-3"></div>
+                        <div class="mt-2 pt-6 pb-6 border-t border-gray-800 flex justify-center">
+                            <button id="addInsetBtn" class="flex items-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-[11px] font-black uppercase tracking-widest transition-all shadow-lg active:scale-95 group">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" /></svg>
+                                Add Another Inset
+                            </button>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- 3. Overlays & Gradients -->
+                <details id="mainGradientDetails" class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 shrink-0">
+                    <summary class="p-4 font-bold text-white cursor-pointer hover:bg-gray-700/50 flex justify-between items-center rounded-lg select-none">
+                        <span>3. Overlays & Gradients</span>
+                        <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </summary>
+                    <div class="px-3 pt-0 pb-0 border-t border-gray-700 mt-2 space-y-3">
+                        <!-- Overlay Block -->
+                        <div class="bg-gray-900 rounded-lg border border-gray-700 overflow-hidden p-3 flex flex-col md:flex-row md:items-center gap-3">
+                            <label class="w-[85px] text-[10px] font-black text-gray-400 uppercase tracking-widest shrink-0">Overlay</label>
+                            <div class="flex flex-col gap-3 flex-grow">
+                                <div class="flex items-center gap-2">
+                                    <input type="range" class="state-val sync-slider slider-bar slider-opacity" data-link="overlayOpacity" min="0" max="100" value="0">
+                                    <input type="number" inputmode="none" class="state-val sync-number entry-base number-entry shrink-0" data-link="overlayOpacity" value="0">
+                                    <input type="text" id="overlayColor" value="#000000" style="background-color: #000000" class="state-val color-picker" inputmode="none" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Gradients Container -->
+                        <div id="gradientsContainer" class="space-y-3"></div>
+
+                        <div class="mt-2 pt-6 pb-6 border-t border-gray-800 flex justify-center">
+                            <button id="addGradientBtn" class="flex items-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-[11px] font-black uppercase tracking-widest transition-all shadow-lg active:scale-95 group">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" /></svg>
+                                Add Gradient Layer
+                            </button>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- 4. Text Forge -->
+                <details id="mainTextDetails" class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 relative shrink-0" open>
+                            <button id="toggleTextForgeVisibility" class="absolute right-12 top-4 p-1 hover:text-white transition-colors z-20" title="Toggle Visibility">
+                                <svg id="textForgeEyeIcon" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </button>
+                            <summary class="p-4 font-bold text-white cursor-pointer hover:bg-gray-700/50 flex justify-between items-center rounded-lg text-sm select-none">
+                                <span>4. Text Forge</span>
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                </div>
+                            </summary>
+                            <div class="px-3 pt-0 pb-0 border-t border-gray-700 mt-2">
+                                <!-- Global Controls Dropdown -->
+                                <details class="group mt-3 bg-gray-900 rounded-lg border border-gray-700 overflow-hidden">
+                                    <summary class="flex items-center justify-center py-1.5 cursor-pointer hover:bg-gray-800/50 select-none">  
+                                        <div class="w-full flex items-center px-4">
+                                            <div class="flex-grow h-[1px] bg-gray-800"></div>
+                                            <div class="px-3 text-[10px] text-gray-500 group-hover:text-blue-400 uppercase font-black tracking-widest">Global Controls</div>
+                                            <div class="flex-grow h-[1px] bg-gray-800"></div>
+                                        </div>
+                                    </summary>
+                                    <div class="p-4 bg-gray-950/30 border-t border-gray-800/50 space-y-4">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                                            <div class="flex flex-col gap-1.5">
+                                                <div class="flex justify-between items-center px-1">
+                                                    <label class="text-[9px] font-black text-gray-500 uppercase tracking-widest">Global X</label>
+                                                    <span class="text-[10px] font-bold text-blue-400 reset-label cursor-pointer hover:text-blue-300 transition-colors" data-default="0">0px</span>
+                                                </div>
+                                                <div class="flex items-center gap-2">
+                                                    <input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="globalTextX" min="-1000" max="1000" value="0">
+                                                    <input type="number" inputmode="none" class="state-val sync-number entry-base number-entry shrink-0" data-link="globalTextX" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col gap-1.5">
+                                                <div class="flex justify-between items-center px-1">
+                                                    <label class="text-[9px] font-black text-gray-500 uppercase tracking-widest">Global Y</label>
+                                                    <span class="text-[10px] font-bold text-blue-400 reset-label cursor-pointer hover:text-blue-300 transition-colors" data-default="0">0px</span>
+                                                </div>
+                                                <div class="flex items-center gap-2">
+                                                    <input type="range" class="state-val sync-slider slider-bar slider-pan" data-link="globalTextY" min="-1000" max="1000" value="0">
+                                                    <input type="number" inputmode="none" class="state-val sync-number entry-base number-entry shrink-0" data-link="globalTextY" value="0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pt-3 border-t border-gray-800/50">
+                                            <div class="flex flex-col gap-1.5">
+                                                <div class="flex justify-between items-center px-1">
+                                                    <label class="text-[9px] font-black text-gray-500 uppercase tracking-widest">Global Scale</label>
+                                                    <span class="text-[10px] font-bold text-blue-400 reset-label cursor-pointer hover:text-blue-300 transition-colors" data-default="100">100%</span>
+                                                </div>
+                                                <div class="flex items-center gap-3">
+                                                    <input type="range" class="state-val sync-slider slider-bar slider-size" data-link="globalTextScale" min="10" max="300" value="100">
+                                                    <input type="number" inputmode="none" class="state-val sync-number entry-base number-entry shrink-0" data-link="globalTextScale" value="100">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+
+                                <div id="textLayersContainer" class="space-y-2 mt-3"></div>
+                                <div class="mt-2 pt-6 pb-6 border-t border-gray-800 flex justify-center">
+                                    <button id="addTextLayerBtn" class="flex items-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-[11px] font-black uppercase tracking-widest transition-all shadow-lg active:scale-95 group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" /></svg>
+                                        Add Text Layer
+                                    </button>
+                                </div>
+                            </div>
+                        </details>
+            </div>
+
+            <!-- Preview Column (Right on Desktop, Top on Mobile) -->
+            <div id="stickyHeader" class="flex-none xl:flex-1 flex flex-col items-center justify-start sticky top-0 order-1 xl:order-2 transition-all duration-300 min-h-0 min-w-0 z-[50]">
+
+
+                <div class="w-full max-w-full flex justify-center py-2 xl:py-0">
+                    <div id="canvasFrame" class="canvas-container shadow-2xl ring-1 ring-white/10 w-full flex items-center justify-center overflow-hidden bg-gray-900/50">
+                        <canvas id="thumbnailCanvas" width="1920" height="1080" class="w-full h-auto block"></canvas>
+                    </div>
+                </div>
+                
+                <div id="controlsWrapper" class="w-full xl:max-w-[420px] xl:mx-auto flex-none flex flex-col overflow-hidden bg-[#0b0d10] xl:bg-transparent relative z-[40] border-b border-transparent transition-all duration-300">
+                    <!-- Controls Row -->
+                    <div class="flex flex-row items-center justify-center gap-1.5 mt-2 md:mt-4 w-full px-2 pb-4 shrink-0">
+                        <!-- Colour Guide -->
+                        <button id="toggleColorWheelBtn" class="flex-1 h-[2.3rem] bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-400 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center whitespace-nowrap min-w-0">
+                            <span class="truncate">CLR Guide</span>
+                        </button>
+
+                        <!-- Scale Buttons (Smaller) -->
+                        <div class="flex items-center gap-1 shrink-0">
+                            <button onclick="setPreviewScale('full')" class="preview-scale-btn active w-9 h-[2.3rem] bg-gray-800 border border-blue-500 text-white rounded-lg text-[10px] font-black uppercase transition-all">F</button>
+                            <button onclick="setPreviewScale('large')" class="preview-scale-btn w-9 h-[2.3rem] bg-gray-800 border border-gray-700 text-gray-400 rounded-lg text-[10px] font-black uppercase transition-all">L</button>
+                            <button onclick="setPreviewScale('medium')" class="preview-scale-btn w-9 h-[2.3rem] bg-gray-800 border border-gray-700 text-gray-400 rounded-lg text-[10px] font-black uppercase transition-all">M</button>
+                            <button onclick="setPreviewScale('small')" class="preview-scale-btn w-9 h-[2.3rem] bg-gray-800 border border-gray-700 text-gray-400 rounded-lg text-[10px] font-black uppercase transition-all">S</button>
+                        </div>
+
+                        <!-- YT Safe Zones -->
+                        <button id="toggleYTGuidesBtn" class="flex-1 h-[2.3rem] bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-400 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center whitespace-nowrap min-w-0">
+                            <span class="truncate">YT Zones</span>
+                        </button>
+                    </div>
+
+                    <div id="colour-wheel-host" class="hidden flex-none flex flex-col min-h-0"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="py-4 flex justify-end shrink-0">
+            <div id="creatorBranding" class="relative group/creator cursor-pointer">
+                <!-- Social Card Popup -->
+                <div class="absolute bottom-full right-0 mb-0 w-48 opacity-0 translate-y-1 pointer-events-none group-hover/creator:opacity-100 group-hover/creator:translate-y-0 group-hover/creator:pointer-events-auto group-[.active]/creator:opacity-100 group-[.active]/creator:translate-y-0 group-[.active]/creator:pointer-events-auto transition-all duration-300 z-[200]">
+                    <div class="bg-gray-900 border border-gray-700 rounded-xl shadow-2xl overflow-hidden">
+                        <div class="px-4 py-2 border-b border-gray-800 bg-gray-950/50 flex justify-between items-center">
+                            <span class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Connect</span>
+                            <span id="appVersion" class="text-[11px] font-bold text-gray-400 uppercase tracking-tight cursor-default">v1.2.1</span>     
+                        </div>
+                        <div class="p-2 space-y-1">
+                            <a href="https://youtube.com/@Y0kenB" target="_blank" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-600/10 text-gray-300 hover:text-red-400 transition-colors group/link">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.016 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                                <span class="text-xs font-bold">YouTube</span>
+                            </a>
+                            <a href="https://x.com/Y0kenB" target="_blank" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-400/10 text-gray-300 hover:text-blue-400 transition-colors group/link">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                <span class="text-xs font-bold">x.com</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Label -->
+                <div class="flex items-center gap-2 px-5 py-2.5 bg-gray-900/40 hover:bg-gray-900/80 border border-gray-800/50 hover:border-orange-500/30 rounded-full backdrop-blur-md transition-all shadow-lg">
+                    <span class="text-[12px] text-gray-400 italic font-medium">Crafted by</span>
+                    <span class="text-[12px] text-orange-500/80 group-hover/creator:text-orange-500 font-black italic tracking-wider transition-colors underline decoration-orange-500/20 underline-offset-4">Y0kenB</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Hidden State inputs -->
+    <input type="hidden" id="baseImgSrc" class="state-val" value="">
+    <input type="hidden" id="insetImgSrc" class="state-val" value="">
+
+</body>
+</html>
