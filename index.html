@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreatFrameForge (GFF)</title>
-    <link rel="icon" type="image/png" href="./assets/ggadgets-logo-DHXrvmgU.png">
-  <script type="module" crossorigin src="./assets/index-BFh_l-pl.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DUGYiXNt.css">
+    <link rel="icon" type="image/png" href="./assets/gff-logo-BSOd__9I.png">
+  <script type="module" crossorigin src="./assets/index-Dtqd1vTJ.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Di9sd8UM.css">
 <link rel="manifest" href="./manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js"></script></head>
 <body class="min-h-screen xl:h-screen bg-[#0b0d10] xl:overflow-hidden">
 
     <div class="max-w-[1920px] mx-auto p-4 md:p-6 flex flex-col min-h-screen xl:h-full">
-        <header class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shrink-0">
-            <div class="flex items-center gap-4">
-                <img src="./assets/ggadgets-logo-DHXrvmgU.png" alt="GFF Logo" class="w-12 h-12 md:w-16 md:h-16 drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-2">
-                        GreatFrameForge <span class="text-[10px] md:text-sm font-normal opacity-60 mt-1">(GFF)</span>
+        <header id="mainAppHeader" class="flex flex-row justify-start items-center gap-4 shrink-0 transition-all duration-300">
+            <div class="flex items-center gap-2 md:gap-4">
+                <img src="./assets/gff-logo-BSOd__9I.png" alt="GFF Logo" class="h-8 md:h-[3.2rem] w-auto drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+                <div class="flex flex-col">
+                    <h1 class="text-sm md:text-2xl font-bold text-white tracking-tight flex items-center gap-1.5 md:gap-2">
+                        GreatFrameForge <span class="hidden md:inline text-[10px] md:text-sm font-normal opacity-60 mt-1">(GFF)</span>
                     </h1>
-                    <p class="text-lg md:text-xl text-emerald-400 italic font-black tracking-[0.2em] mt-0.5 opacity-90">Frame. Forge. Finish.</p>
+                    <p class="text-[8px] md:text-xl text-emerald-400 italic font-black tracking-[0.1em] md:tracking-[0.2em] opacity-90 leading-none">Frame. Forge. Finish.</p>
                 </div>
             </div>
-            <div class="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
-                <div class="flex items-center gap-3 w-full md:w-auto">
-                    <button id="resetBtn" class="flex-1 md:flex-none bg-red-900/40 hover:bg-red-900/60 border border-red-800 text-red-200 px-4 py-2 rounded-lg text-sm font-semibold transition-colors uppercase tracking-wider">Clear Canvas</button>
+            <div class="flex flex-row items-center gap-2 md:gap-3 w-auto">
+                <div class="flex items-center gap-1.5 md:gap-3 w-auto h-9">
+                    <button id="resetBtn" class="flex-1 md:flex-none bg-red-900/40 hover:bg-red-900/60 border border-red-800 text-red-200 px-4 py-2 rounded-lg text-sm font-semibold transition-colors uppercase tracking-wider">New Canvas</button>
                     
                     <!-- Export Dropdown -->
                     <div class="flex-1 md:flex-none inline-flex h-9">
@@ -32,7 +32,7 @@
                             <button class="bg-emerald-600 hover:bg-emerald-500 border-l border-emerald-400/30 text-white px-2 py-1 rounded-r-lg transition-colors shadow-lg shadow-emerald-600/20 h-full flex items-center dropdown-toggle">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                             </button>
-                            <div class="absolute hidden group-hover:block group-[.open]:block top-full right-0 min-w-[160px] pt-0 z-[100] dropdown-menu">
+                            <div class="absolute top-full right-0 min-w-[160px] pt-0 z-[100] dropdown-menu">
                                 <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 mt-0">
                                     <div class="px-4 py-1 text-[10px] font-black text-gray-500 uppercase tracking-widest border-b border-gray-800 mb-1">Select Resolution</div>
                                     <div class="px-4 py-2 text-sm text-gray-300 hover:bg-emerald-600 hover:text-white cursor-pointer transition-colors res-option" onclick="setExportRes(1080)">1080p (Standard)</div>
@@ -59,9 +59,9 @@
                     </div>
                 </div>
                 
-                <div id="controlsWrapper" class="w-full xl:max-w-[420px] xl:mx-auto flex-none flex flex-col overflow-hidden bg-[#0b0d10] xl:bg-transparent relative z-[40] border-b border-transparent transition-all duration-300">
+                <div id="controlsWrapper" class="w-full xl:max-w-[420px] xl:mx-auto flex-none flex flex-col bg-[#0b0d10] xl:bg-transparent relative z-[40] border-b border-transparent transition-all duration-300">
                     <!-- Controls Row -->
-                    <div class="flex flex-row items-center justify-center gap-1.5 mt-2 md:mt-4 w-full px-2 pb-4 shrink-0">
+                    <div class="flex flex-row items-center justify-center gap-1.5 mt-2 md:mt-4 w-full px-2 pb-2 shrink-0">
                         <!-- Colour Guide -->
                         <button id="toggleColorWheelBtn" class="flex-1 h-[2.3rem] bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-400 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center whitespace-nowrap min-w-0">
                             <span class="truncate">CLR Guide</span>
@@ -80,6 +80,48 @@
                             <span class="truncate">YT Zones</span>
                         </button>
                     </div>
+
+                    <!-- Mobile Preset Host -->
+                    <div id="mobilePresetsHost" class="w-full xl:hidden">
+                        <!-- Preset Management Row (Will be moved here via JS on mobile) -->
+                        <div id="presetsRow" class="relative flex items-center gap-3 w-full px-2 xl:pb-1 pb-4 shrink-0 transition-all duration-300">
+                            <!-- Load -->
+                            <div class="relative group flex-1 dropdown-container">
+                                <div class="inline-flex h-10 cursor-pointer w-full dropdown-toggle">
+                                    <button id="currentPresetName" class="flex-1 bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-2 py-1 rounded-l-lg text-[11px] font-bold transition-colors border-r-0 truncate uppercase tracking-wider">Load</button>
+                                    <button class="bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-2.5 py-1 rounded-r-lg text-sm transition-colors h-full flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                    </button>
+                                </div>
+                                <div class="absolute top-full left-0 w-full pt-1 z-[110] dropdown-menu">
+                                    <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 overflow-hidden">
+                                        <div id="presetDropdownList" class="max-h-[300px] overflow-y-auto overflow-x-hidden sidebar-scroll p-1"></div>
+                                        <div class="border-t border-gray-800 mt-2 pt-2 px-2 flex gap-2">
+                                            <button id="importPresetBtn" class="flex-1 bg-gray-800 hover:bg-gray-700 text-[10px] font-bold py-2 rounded border border-gray-700 uppercase tracking-tighter">Import</button>
+                                            <button id="exportPresetBtn" class="flex-1 bg-gray-800 hover:bg-gray-700 text-[10px] font-bold py-2 rounded border border-gray-700 uppercase tracking-tighter">Export</button>
+                                            <input type="file" id="presetImportFile" accept=".json" class="hidden">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Save Button -->
+                            <div class="relative group flex-1 dropdown-container">
+                                <div class="inline-flex h-10 w-full dropdown-toggle cursor-pointer">
+                                    <button id="savePresetBtn" class="flex-1 bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-2 py-1 rounded-l-lg text-[11px] font-bold transition-colors border-r-0 uppercase tracking-wider">Save Preset</button>
+                                    <button class="bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-2.5 py-1 rounded-r-lg transition-colors h-full flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                    </button>
+                                </div>
+                                <div class="absolute top-full right-0 w-full pt-1 z-[110] dropdown-menu">
+                                    <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 overflow-hidden">
+                                        <div class="px-4 py-1 text-[10px] font-black text-gray-500 uppercase tracking-widest border-b border-gray-800 mb-1">Overwrite Existing</div>
+                                        <div id="saveDropdownList" class="max-h-[300px] overflow-y-auto overflow-x-hidden sidebar-scroll p-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -89,6 +131,9 @@
                 <!-- Colour Guide Host (Always at the top of the column) -->
                 <div id="colour-wheel-host" class="hidden sticky xl:relative top-[var(--header-height,0px)] xl:top-0 z-[60] bg-[#0b0d10] pb-0 -mx-2.5 md:-mx-4 px-2.5 md:px-4 border-b border-transparent transition-all duration-300"></div>
 
+                <!-- Desktop Preset Host -->
+                <div id="desktopPresetsHost" class="hidden xl:block mt-1 mb-1 shrink-0 px-2.5 md:px-4"></div>
+
                 <!-- Side Panel (Scrollable Controls) -->
                 <div id="controlsArea" class="w-full flex flex-col bg-gray-900 p-2.5 md:p-4 rounded-xl border border-gray-800 xl:overflow-y-auto sidebar-scroll relative transition-all duration-300 xl:h-[calc(100vh-180px)] z-[30]">
                     
@@ -96,49 +141,9 @@
 
                     <div id="scroll-sentinel" class="absolute top-0 left-0 w-full h-px pointer-events-none"></div>
 
-                    <!-- Preset Management Row -->
-                    <div class="relative mt-2 border border-gray-700/50 rounded-xl p-1.5 flex items-center gap-3 bg-gray-950/40 group/presets shadow-inner shrink-0">
-                    <div class="absolute -top-2 left-3 px-1.5 bg-gray-900 text-[9px] font-black text-amber-500/80 uppercase tracking-[0.2em]">Presets</div>
-
-                    <!-- Load -->
-                    <div class="relative group flex-1 dropdown-container">
-                        <div class="inline-flex h-10 cursor-pointer w-full dropdown-toggle">
-                            <button id="currentPresetName" class="flex-1 bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-2 py-1 rounded-l-lg text-[11px] font-bold transition-colors border-r-0 truncate uppercase tracking-wider">Load</button>
-                            <button class="bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-2.5 py-1 rounded-r-lg text-sm transition-colors h-full flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                            </button>
-                        </div>
-                        <div class="absolute hidden group-hover:block group-[.open]:block top-full left-0 w-full pt-1 z-[110] dropdown-menu">
-                            <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 overflow-hidden">
-                                <div id="presetDropdownList" class="max-h-[300px] overflow-y-auto overflow-x-hidden sidebar-scroll p-1"></div>
-                                <div class="border-t border-gray-800 mt-2 pt-2 px-2 flex gap-2">
-                                    <button id="importPresetBtn" class="flex-1 bg-gray-800 hover:bg-gray-700 text-[10px] font-bold py-2 rounded border border-gray-700 uppercase tracking-tighter">Import</button>
-                                    <button id="exportPresetBtn" class="flex-1 bg-gray-800 hover:bg-gray-700 text-[10px] font-bold py-2 rounded border border-gray-700 uppercase tracking-tighter">Export</button>
-                                    <input type="file" id="presetImportFile" accept=".json" class="hidden">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Save Button -->
-                    <div class="relative group flex-1 dropdown-container">
-                        <div class="inline-flex h-10 w-full">
-                            <button id="savePresetBtn" class="flex-1 bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-2 py-1 rounded-l-lg text-[11px] font-bold transition-colors border-r-0 uppercase tracking-wider">Save Preset</button>
-                            <button class="bg-amber-500/10 group-hover:bg-amber-500/20 border border-amber-500/30 text-amber-200/70 px-2.5 py-1 rounded-r-lg transition-colors h-full flex items-center dropdown-toggle">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                            </button>
-                        </div>
-                        <div class="absolute hidden group-hover:block group-[.open]:block top-full right-0 w-full pt-1 z-[110] dropdown-menu">
-                            <div class="bg-gray-900 border border-gray-700 rounded-lg shadow-2xl py-2 overflow-hidden">
-                                <div class="px-4 py-1 text-[10px] font-black text-gray-500 uppercase tracking-widest border-b border-gray-800 mb-1">Overwrite Existing</div>
-                                <div id="saveDropdownList" class="max-h-[300px] overflow-y-auto overflow-x-hidden sidebar-scroll p-1"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- 1. Base Image -->
-                <details id="mainBaseDetails" class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 shrink-0" open>
+                <details id="mainBaseDetails" class="panel-section panel-accent-image rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 shrink-0" open>
                     <summary class="p-2.5 md:p-3 font-bold text-white cursor-pointer hover:bg-gray-700/50 flex justify-between items-center rounded-lg select-none">
                         <span>1. Frame Image</span>
                         <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -224,7 +229,7 @@
                 </details>
 
                 <!-- 2. Inset Layers -->
-                <details id="mainInsetDetails" class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 shrink-0" open>
+                <details id="mainInsetDetails" class="panel-section panel-accent-insets rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 shrink-0" open>
                     <summary class="p-2.5 md:p-3 font-bold text-white cursor-pointer hover:bg-gray-700/50 flex justify-between items-center rounded-lg select-none">
                         <span>2. Frame Insets</span>
                         <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -241,7 +246,7 @@
                 </details>
 
                 <!-- 3. Gradients -->
-                <details id="mainGradientDetails" class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 shrink-0">
+                <details id="mainGradientDetails" class="panel-section panel-accent-gradients rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 shrink-0">
                     <summary class="p-2.5 md:p-3 font-bold text-white cursor-pointer hover:bg-gray-700/50 flex justify-between items-center rounded-lg select-none">
                         <span>3. Forge Gradients</span>
                         <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -262,14 +267,8 @@
                 </details>
 
                 <!-- 4. Text Forge -->
-                <details id="mainTextDetails" class="bg-gray-800 rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 relative shrink-0" open>
-                            <button id="toggleTextForgeVisibility" class="absolute right-12 top-4 p-1 hover:text-white transition-colors z-20" title="Toggle Visibility">
-                                <svg id="textForgeEyeIcon" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                </svg>
-                            </button>
-                            <summary class="p-2.5 md:p-3 font-bold text-white cursor-pointer hover:bg-gray-700/50 flex justify-between items-center rounded-lg text-sm select-none">
+                <details id="mainTextDetails" class="panel-section panel-accent-text rounded-lg border border-gray-700 open:ring-1 open:ring-gray-600 relative shrink-0" open>
+                    <summary class="p-2.5 md:p-3 font-bold text-white cursor-pointer hover:bg-gray-700/50 flex justify-between items-center rounded-lg text-sm select-none">
                                 <span>4. Forge Text</span>
                                 <div class="flex items-center gap-2">
                                     <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -348,6 +347,12 @@
                         <span id="appVersion" class="text-[11px] font-bold text-gray-400 uppercase tracking-tight cursor-default">v1.2.1</span>     
                     </div>
                     <div class="p-2 space-y-1">
+                        <a href="https://ydgreatmedia.com" target="_blank" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-amber-500/10 text-gray-300 hover:text-amber-400 transition-colors group/link">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                            </svg>
+                            <span class="text-xs font-bold">Website</span>
+                        </a>
                         <a href="https://youtube.com/@Y0kenB" target="_blank" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-600/10 text-gray-300 hover:text-red-400 transition-colors group/link">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.016 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                             <span class="text-xs font-bold">YouTube</span>
